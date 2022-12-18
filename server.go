@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"iban-validator/iban"
 	"log"
 	"net/http"
 )
@@ -18,6 +19,7 @@ func main() {
 
 	port := ":5000"
 	fmt.Println("Server is running on port" + port)
+	fmt.Println("countries are " + iban.Countries)
 
 	// Start server on port specified above
 	log.Fatal(http.ListenAndServe(port, nil))
