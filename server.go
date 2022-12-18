@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"iban-validator/iban"
+	iban_validator "iban-validator/iban"
 	"log"
 	"net/http"
 )
@@ -24,12 +24,17 @@ func main() {
 			http.Error(w, "Can only validate one IBAN per request", 400)
 			return
 		}
-		fmt.Println("IBAN: " + iban[0])
+		is_valid := iban_validator.Validate(iban[0])
+		if is_valid {
+			fmt.Fprintf(w, "IBAN is valid")
+		} else {
+			http.Error(w, "IBAN is invalid", 400)
+		}
 	})
 
 	port := ":5000"
 	fmt.Println("Server is running on port" + port)
-	fmt.Println("countries are " + iban.Countries)
+	fmt.Println("countries are " + iban_validator.Countries)
 
 	// Start server on port specified above
 	log.Fatal(http.ListenAndServe(port, nil))
