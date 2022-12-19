@@ -49,3 +49,18 @@ func TestEncodeChar(t *testing.T) {
 		}
 	}
 }
+
+func TestMod97(t *testing.T) {
+	inputs_and_expected := map[string]int{
+		"321428291":                    70,
+		"32142829100":                  16,
+		"3214282912345698765432161182": 1,
+	}
+	for input, expected := range inputs_and_expected {
+		actual := mod97(input)
+		if actual != expected {
+			t.Logf("%s mod 97 should be %d; was %d", input, expected, actual)
+			t.Fail()
+		}
+	}
+}

@@ -6,6 +6,7 @@ package iban
 import (
 	"errors"
 	"fmt"
+	"strconv"
 	"strings"
 )
 
@@ -47,4 +48,24 @@ func encodeIban(iban string) string {
 
 func encodeChar(char byte) string {
 	return fmt.Sprint(int(char) - 55)
+}
+
+// input is always a string of digits, so no error handling in int conversion needed
+func mod97(input string) int {
+	if len(input) <= 9 {
+		value, _ := strconv.Atoi(input)
+		return value % 97
+	}
+	value, _ := strconv.Atoi(input[0:10])
+	mod := value % 97
+	rest := input[10:]
+	for {
+		if len(rest) <= 7 {
+			value, _ := strconv.Atoi(fmt.Sprint(mod) + rest)
+			return value % 97
+		}
+		value, _ := strconv.Atoi(fmt.Sprint(mod) + rest[0:8])
+		mod = value % 97
+		rest = rest[8:]
+	}
 }
