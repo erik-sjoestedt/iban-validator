@@ -31,24 +31,6 @@ func Validate(iban string) error {
 	}
 }
 
-func encodeIban(iban string) string {
-	upper := strings.ToUpper(iban)
-	reordered := upper[4:] + upper[0:4]
-	encoded := ""
-	for i := 0; i < len(reordered); i++ {
-		if reordered[i] >= byte('A') && reordered[i] <= byte('Z') {
-			encoded += encodeChar(reordered[i])
-		} else {
-			encoded += reordered[i : i+1]
-		}
-	}
-	return encoded
-}
-
-func encodeChar(char byte) string {
-	return fmt.Sprint(int(char) - 55)
-}
-
 // input is always a string of digits, so no error handling in int conversion needed
 func mod97(input string) int {
 	if len(input) <= 9 {
@@ -67,4 +49,22 @@ func mod97(input string) int {
 		mod = value % 97
 		rest = rest[8:]
 	}
+}
+
+func encodeIban(iban string) string {
+	upper := strings.ToUpper(iban)
+	reordered := upper[4:] + upper[0:4]
+	encoded := ""
+	for i := 0; i < len(reordered); i++ {
+		if reordered[i] >= byte('A') && reordered[i] <= byte('Z') {
+			encoded += encodeChar(reordered[i])
+		} else {
+			encoded += reordered[i : i+1]
+		}
+	}
+	return encoded
+}
+
+func encodeChar(char byte) string {
+	return fmt.Sprint(int(char) - 55)
 }
