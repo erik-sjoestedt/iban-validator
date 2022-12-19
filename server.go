@@ -10,7 +10,7 @@ import (
 func main() {
 
 	// API routes
-	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+	http.HandleFunc("/health", func(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintf(w, "Hello world from GfG")
 	})
 	http.HandleFunc("/validate", func(w http.ResponseWriter, r *http.Request) {
