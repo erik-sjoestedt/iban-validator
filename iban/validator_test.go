@@ -13,8 +13,10 @@ func TestValidateValidIban(t *testing.T) {
 }
 
 func TestValidateInvalidIban(t *testing.T) {
-	invalid_ibans := [1]string{
+	invalid_ibans := []string{
 		"SE123", // incorrect SE length
+		"12345", // incorrect format - no country
+		"AB",    // incorrect format - length
 	}
 	for i := 0; i < len(invalid_ibans); i++ {
 		if Validate(invalid_ibans[i]) == nil {

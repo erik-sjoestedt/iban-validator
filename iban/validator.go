@@ -6,15 +6,17 @@ package iban
 import (
 	"errors"
 	"fmt"
+	"regexp"
 	"strconv"
 	"strings"
 )
 
 var length_per_country = map[string]int{"SE": 24}
+var iban_general_format = regexp.MustCompile(`^[a-zA-Z]{2}[a-zA-Z0-9]{1}`)
 
 func Validate(iban string) error {
-	if len(iban) < 3 {
-		return errors.New("Not supported or invalid country")
+	if !iban_general_format.MatchString(iban) {
+		return errors.New("Invalid format")
 	}
 	country := iban[0:2]
 	country_length, exists := length_per_country[country]
