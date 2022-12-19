@@ -24,11 +24,11 @@ func main() {
 			http.Error(w, "Can only validate one IBAN per request", 400)
 			return
 		}
-		is_valid := iban_validator.Validate(iban[0])
-		if is_valid {
+		err := iban_validator.Validate(iban[0])
+		if err == nil {
 			fmt.Fprintf(w, "IBAN is valid")
 		} else {
-			http.Error(w, "IBAN is invalid", 400)
+			http.Error(w, err.Error(), 400)
 		}
 	})
 
