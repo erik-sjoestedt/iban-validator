@@ -3,3 +3,4 @@ Makefile
 .*.sw*
 Dockerfile
 .dockerignore
+iban-validator
