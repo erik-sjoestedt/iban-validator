@@ -26,7 +26,7 @@ func main() {
 		}
 		err := iban_validator.Validate(iban[0])
 		if err == nil {
-			fmt.Fprintf(w, "IBAN is valid")
+			fmt.Fprintf(w, "IBAN is valid\n")
 		} else {
 			http.Error(w, err.Error(), 400)
 		}
