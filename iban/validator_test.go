@@ -26,7 +26,7 @@ func TestValidateInvalidIban(t *testing.T) {
 
 func TestEncodeIban(t *testing.T) {
 	input := "AY97123BZ456"
-	expected := "1231135456103400"
+	expected := "1231135456103497"
 	actual := encodeIban(input)
 	if actual != expected {
 		t.Log(input + " should be encoded to " + expected + "; was " + actual)

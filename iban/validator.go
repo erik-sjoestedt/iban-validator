@@ -33,8 +33,7 @@ func Validate(iban string) error {
 
 func encodeIban(iban string) string {
 	upper := strings.ToUpper(iban)
-	zero_checksum := upper[0:2] + "00" + upper[4:]
-	reordered := zero_checksum[4:] + zero_checksum[0:4]
+	reordered := upper[4:] + upper[0:4]
 	encoded := ""
 	for i := 0; i < len(reordered); i++ {
 		if reordered[i] >= byte('A') && reordered[i] <= byte('Z') {
