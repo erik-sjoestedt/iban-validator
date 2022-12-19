@@ -24,7 +24,7 @@ func Validate(iban string) error {
 	if len(iban) != country_length {
 		return errors.New("Invalid length")
 	}
-	if iban == "SE4550000000058398257466" {
+	if mod97(encodeIban(iban)) == 1 {
 		return nil
 	} else {
 		return errors.New("invalid")
