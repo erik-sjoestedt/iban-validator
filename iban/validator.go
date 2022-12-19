@@ -11,7 +11,7 @@ import (
 	"strings"
 )
 
-var length_per_country = map[string]int{"SE": 24}
+var length_per_country = map[string]int{"SE": 24, "AL": 28}
 var iban_general_format = regexp.MustCompile(`^[a-zA-Z]{2}[a-zA-Z0-9]{1}`)
 
 func Validate(iban string) error {

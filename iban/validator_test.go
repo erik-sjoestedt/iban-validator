@@ -3,7 +3,10 @@ package iban
 import "testing"
 
 func TestValidateValidIban(t *testing.T) {
-	valid_ibans := [1]string{"SE4550000000058398257466"}
+	valid_ibans := []string{
+		"SE4550000000058398257466",
+		"AL47212110090000000235698741",
+	}
 	for i := 0; i < len(valid_ibans); i++ {
 		if Validate(valid_ibans[i]) != nil {
 			t.Log(valid_ibans[i] + " should be valid IBAN")
