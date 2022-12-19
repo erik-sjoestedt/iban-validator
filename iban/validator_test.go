@@ -23,3 +23,29 @@ func TestValidateInvalidIban(t *testing.T) {
 		}
 	}
 }
+
+func TestEncodeIban(t *testing.T) {
+	input := "AY97123BZ456"
+	expected := "1231135456103400"
+	actual := encodeIban(input)
+	if actual != expected {
+		t.Log(input + " should be encoded to " + expected + "; was " + actual)
+		t.Fail()
+	}
+}
+
+func TestEncodeChar(t *testing.T) {
+	chars_and_codes := map[byte]string{
+		byte('A'): "10",
+		byte('B'): "11",
+		byte('Y'): "34",
+		byte('Z'): "35",
+	}
+	for char, code := range chars_and_codes {
+		actual := encodeChar(char)
+		if actual != code {
+			t.Log(string(char) + " should be encoded to " + code + "; was " + actual)
+			t.Fail()
+		}
+	}
+}
