@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	iban_validator "github.com/erik-sjoestedt/iban-validator"
+	iban_validator "github.com/erik-sjoestedt/iban-validator/iban"
 	"log"
 	"net/http"
 )
