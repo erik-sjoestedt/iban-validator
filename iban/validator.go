@@ -14,7 +14,7 @@ var length_per_country = map[string]int{"SE": 24}
 
 func Validate(iban string) error {
 	if len(iban) < 3 {
-		return errors.New("Invalid country")
+		return errors.New("Not supported or invalid country")
 	}
 	country := iban[0:2]
 	country_length, exists := length_per_country[country]
@@ -27,7 +27,7 @@ func Validate(iban string) error {
 	if mod97(encodeIban(iban)) == 1 {
 		return nil
 	} else {
-		return errors.New("invalid")
+		return errors.New("Invalid checksum")
 	}
 }
 
